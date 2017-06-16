@@ -10,21 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614132241) do
+ActiveRecord::Schema.define(version: 20170616052258) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.string "status", default: "open"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.integer "project_id"
-    t.integer "developer_id"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "assigned"
+    t.date "start_date"
+    t.date "end_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,6 +40,9 @@ ActiveRecord::Schema.define(version: 20170614132241) do
     t.integer "developer_id"
     t.boolean "project_owner", default: false
     t.boolean "developer", default: false
+    t.string "email"
+    t.string "password_digest"
+    t.string "image"
   end
 
 end
